@@ -24,6 +24,7 @@ import {
   getActiveElement,
   getIn,
   makeCancelable,
+  isUndefinedObject,
 } from './utils';
 
 export class Formik<Values = FormikValues> extends React.Component<
@@ -597,7 +598,7 @@ export class Formik<Values = FormikValues> extends React.Component<
     return {
       dirty,
       isValid: dirty
-        ? this.state.errors && Object.keys(this.state.errors).length === 0
+        ? this.state.errors && isUndefinedObject(this.state.errors)
         : isInitialValid !== false && isFunction(isInitialValid)
           ? (isInitialValid as (props: this['props']) => boolean)(this.props)
           : (isInitialValid as boolean),

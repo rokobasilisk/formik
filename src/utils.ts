@@ -1,5 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep';
 import toPath from 'lodash/toPath';
+import values from 'lodash/values';
 import * as React from 'react';
 
 /**
@@ -171,4 +172,13 @@ export function makeCancelable<T extends Promise<any>>(
       hasCanceled = true;
     },
   ];
+}
+
+/**
+ * Check if all object values are undefined.
+ * @param {object} Object
+ * @return {boolean}
+ */
+export function isUndefinedObject(object: Object): boolean {
+  return !values(object).some(v => v !== undefined);
 }
